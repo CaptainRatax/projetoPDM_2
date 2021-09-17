@@ -1,4 +1,4 @@
-package com.example.projetopdmsam;
+package com.example.projetopdmsam.Modelos;
 
 public class Obra {
     int Id;

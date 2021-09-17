@@ -1,4 +1,4 @@
-package com.example.projetopdmsam;
+package com.example.projetopdmsam.Backend;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,7 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import androidx.annotation.Nullable;
+import com.example.projetopdmsam.Modelos.Caso;
+import com.example.projetopdmsam.Modelos.Inspecao;
+import com.example.projetopdmsam.Modelos.Obra;
+import com.example.projetopdmsam.Modelos.Utilizador;
 
 import java.util.ArrayList;
 import java.util.List;
