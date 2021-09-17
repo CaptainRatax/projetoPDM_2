@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Projeto PDM SAM</string>
     <string name="criar">Criar</string>
     <string name="ir_buscar">Ir buscar</string>
     <string name="logout">Logout</string>
