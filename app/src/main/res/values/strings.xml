@@ -1,13 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Projeto PDM SAM</string>
-    <string name="criar">Criar</string>
-    <string name="ir_buscar">Ir buscar</string>
-    <string name="logout">Logout</string>
-    <string name="is_active">Is Active:</string>
-    <string name="telem_vel">Telemóvel:</string>
-    <string name="email">Email:</string>
-    <string name="nome">Nome:</string>
-    <string name="username">Username:</string>
-    <string name="password">Password:</string>
-    <string name="id">Id:</string>
+    <string name="app_name">Renergy</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="username_input">Username Input</string>
+    <string name="password_input">Password Input</string>
 </resources>
