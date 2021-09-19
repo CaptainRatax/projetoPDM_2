@@ -42,8 +42,11 @@ public interface Api {
     @GET("Inspecoes/DevolverAtivaPorIdInspetor")
     Call<JsonObject> getInspecaoAtivaPorIdInspetor(@Query("Id") int IdInspetor);
 
+    @GET("Inspecoes/DevolverAtivaPorIdObra")
+    Call<JsonObject> getInspecaoAtivaPorIdObra(@Query("Id") int IdObra);
+
     @GET("Inspecoes/DevolverAtivaPorIdInspetorObra")
-    Call<JsonObject> getAtivaPorIdInspetorIdObra(@Query("IdInspetor") int IdInspetor, @Query("IdObra") int IdObra);
+    Call<JsonObject> getInspecaoAtivaPorIdInspetorIdObra(@Query("IdInspetor") int IdInspetor, @Query("IdObra") int IdObra);
 
     @DELETE("Inspecoes/Cancelar")
     Call<JsonObject> cancelarInspecao(@Query("Id") int Id);
