@@ -78,15 +78,6 @@ public class PaginaInicial extends AppCompatActivity {
                             inspecaoADecorrer.setInspetorId(inspecao.get("InspectorId").getAsInt());
                             inspecaoADecorrer.setObraId(inspecao.get("ObraId").getAsInt());
                             inspecaoADecorrer.setActive(inspecao.get("IsActive").getAsBoolean());
-                            if (bd.getObraPorId(obra.getId()).isActive()) {//Verifica se a obra já existe localmente
-                                //A obra existe localmente
-                                if (bd.getObraPorId(obra.getId()) != obra) {//Verifica se a obra que existe localmente é diferente da recebida
-                                    bd.editarObra(obra); //Se for altera a obra local e coloca os dados da obra recebida
-                                }
-                            } else {
-                                //A obra não existe localmente
-                                bd.adicionarObra(obra); //Cria a obra localmente
-                            }
                             if (bd.getInspecaoADecorrer().isActive()) { //Verifica se existe alguma inspeção a decorrer localmente
                                 //Existe uma inspeção a decorrer localmente
                                 if (bd.getInspecaoADecorrer() != inspecaoADecorrer) { //Verifica se a inspeção que está a decorrer localmente é diferente da recebida
@@ -96,6 +87,15 @@ public class PaginaInicial extends AppCompatActivity {
                             } else {
                                 //Não existe nenhuma inspeção a decorrer localmente
                                 bd.comecarInspecaoLocal(inspecaoADecorrer); //Começa a inspeção localmente
+                            }
+                            if (bd.getObraPorId(obra.getId()).isActive()) {//Verifica se a obra já existe localmente
+                                //A obra existe localmente
+                                if (bd.getObraPorId(obra.getId()) != obra) {//Verifica se a obra que existe localmente é diferente da recebida
+                                    bd.editarObra(obra); //Se for altera a obra local e coloca os dados da obra recebida
+                                }
+                            } else {
+                                //A obra não existe localmente
+                                bd.adicionarObra(obra); //Cria a obra localmente
                             }
                             Intent intent = new Intent(getApplicationContext(), InspecaoADecorrer.class);
                             startActivity(intent);
