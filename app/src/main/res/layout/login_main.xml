@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="160dp"
+        android:labelFor="@id/edt_Username"
         android:text="@string/username"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="48dp"
+        android:labelFor="@id/edt_Password"
         android:text="@string/password"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,11 +45,12 @@
         android:ems="10"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
+        android:textColorHint="#00FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.238"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:ignore="EditableContentDescCheck" />
+        tools:ignore="EditableContentDescCheck,DuplicateSpeakableTextCheck" />
 
     <EditText
         android:id="@+id/edt_Password"
@@ -60,11 +63,12 @@
         android:ems="10"
         android:importantForAutofill="no"
         android:inputType="textPassword"
+        android:textColorHint="#00FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        tools:ignore="EditableContentDescCheck" />
+        tools:ignore="EditableContentDescCheck,DuplicateSpeakableTextCheck" />
 
     <Button
         android:id="@+id/btn_Login"
