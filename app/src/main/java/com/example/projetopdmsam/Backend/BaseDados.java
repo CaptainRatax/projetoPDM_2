@@ -236,21 +236,25 @@ public class BaseDados extends SQLiteOpenHelper {
 
     //Get obra por Id
     public Obra getObraPorId(int Id){
-        SQLiteDatabase bd = this.getReadableDatabase();
+        try{
+            SQLiteDatabase bd = this.getReadableDatabase();
 
-        Cursor cursor = bd.query(TABELA_OBRAS, new String[] {OBRAS_ID, OBRAS_NOME,
-                        OBRAS_DESCRICAO, OBRAS_MORADA, OBRAS_CODIGOPOSTAL,
-                        OBRAS_LOCALIDADE, OBRAS_PAIS, OBRAS_DATAINICIO,
-                        OBRAS_RESPONSAVEL, OBRAS_ISACTIVE}, OBRAS_ID + " = ?",
-                new String[] {String.valueOf(Id)}, null, null, null, null);
-        if(cursor != null) {
-            cursor.moveToFirst();
+            Cursor cursor = bd.query(TABELA_OBRAS, new String[] {OBRAS_ID, OBRAS_NOME,
+                            OBRAS_DESCRICAO, OBRAS_MORADA, OBRAS_CODIGOPOSTAL,
+                            OBRAS_LOCALIDADE, OBRAS_PAIS, OBRAS_DATAINICIO,
+                            OBRAS_RESPONSAVEL, OBRAS_ISACTIVE}, OBRAS_ID + " = ?",
+                    new String[] {String.valueOf(Id)}, null, null, null, null);
+            if(cursor != null) {
+                cursor.moveToFirst();
+            }
+            Obra obra = new Obra(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2),
+                    cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6),
+                    cursor.getString(7), cursor.getString(8), cursor.getString(9) == "1");
+
+            return obra;
+        }catch (Exception e){
+            return new Obra();
         }
-        Obra obra = new Obra(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2),
-                cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6),
-                cursor.getString(7), cursor.getString(8), cursor.getString(9) == "1");
-
-        return obra;
     }
 
     //Editar obra

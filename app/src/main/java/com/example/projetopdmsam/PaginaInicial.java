@@ -14,16 +14,24 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.JsonReader;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.projetopdmsam.Backend.BaseDados;
+import com.example.projetopdmsam.Backend.RetrofitClient;
 import com.example.projetopdmsam.Modelos.Inspecao;
+import com.example.projetopdmsam.Modelos.Obra;
 import com.example.projetopdmsam.Modelos.Utilizador;
 import com.example.projetopdmsam.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.JsonObject;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PaginaInicial extends AppCompatActivity {
 
@@ -41,6 +49,65 @@ public class PaginaInicial extends AppCompatActivity {
         if(inspecaoADecorrer.isActive()){
             Intent intent = new Intent(getApplicationContext(), InspecaoADecorrer.class);
             startActivity(intent);
+        }else{
+            if(isInternetAvailable()){
+                Call<JsonObject> call = RetrofitClient.getInstance().getMyApi().getInspecaoAtivaPorIdInspetor(loggedInUser.getId());
+                call.enqueue(new Callback<JsonObject>() {
+                    @Override
+                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                        if(response.body().get("Success").getAsBoolean()){
+                            JsonObject obraJson = response.body().get("Obra").getAsJsonObject();
+                            //Cria um objeto do tipo Obra usando o Json que recebeu da API
+                            Obra obra = new Obra();
+                            obra.setId(obraJson.get("Id").getAsInt());
+                            obra.setNome(obraJson.get("Nome").getAsString());
+                            obra.setDescricao(obraJson.get("Descricao").getAsString());
+                            obra.setCodigoPostal(obraJson.get("CodigoPostal").getAsString());
+                            obra.setLocalidade(obraJson.get("Localidade").getAsString());
+                            obra.setPais(obraJson.get("Pais").getAsString());
+                            obra.setDataInicio(obraJson.get("DataInicio").getAsString());
+                            obra.setResponsavel(obraJson.get("Responsavel").getAsString());
+                            obra.setActive(obraJson.get("IsActive").getAsBoolean());
+
+                            JsonObject inspecao = response.body().get("Inspecao").getAsJsonObject();
+                            //Cria um objeto do tipo Inspecao usando o Json que recebeu da API
+                            inspecaoADecorrer.setId(inspecao.get("Id").getAsInt());
+                            inspecaoADecorrer.setDataInicio(inspecao.get("DataInicio").getAsString());
+                            inspecaoADecorrer.setDataFim(inspecao.get("DataFim").getAsString());
+                            inspecaoADecorrer.setFinished(inspecao.get("IsFinished").getAsBoolean());
+                            inspecaoADecorrer.setInspetorId(inspecao.get("InspectorId").getAsInt());
+                            inspecaoADecorrer.setObraId(inspecao.get("ObraId").getAsInt());
+                            inspecaoADecorrer.setActive(inspecao.get("IsActive").getAsBoolean());
+                            if (bd.getObraPorId(obra.getId()).isActive()) {//Verifica se a obra já existe localmente
+                                //A obra existe localmente
+                                if (bd.getObraPorId(obra.getId()) != obra) {//Verifica se a obra que existe localmente é diferente da recebida
+                                    bd.editarObra(obra); //Se for altera a obra local e coloca os dados da obra recebida
+                                }
+                            } else {
+                                //A obra não existe localmente
+                                bd.adicionarObra(obra); //Cria a obra localmente
+                            }
+                            if (bd.getInspecaoADecorrer().isActive()) { //Verifica se existe alguma inspeção a decorrer localmente
+                                //Existe uma inspeção a decorrer localmente
+                                if (bd.getInspecaoADecorrer() != inspecaoADecorrer) { //Verifica se a inspeção que está a decorrer localmente é diferente da recebida
+                                    bd.acabarInspecaoLocal(); //Se for acaba a inspeção local
+                                    bd.comecarInspecaoLocal(inspecaoADecorrer); //e começa uma nova com os dados da inspeção recebida
+                                }
+                            } else {
+                                //Não existe nenhuma inspeção a decorrer localmente
+                                bd.comecarInspecaoLocal(inspecaoADecorrer); //Começa a inspeção localmente
+                            }
+                            Intent intent = new Intent(getApplicationContext(), InspecaoADecorrer.class);
+                            startActivity(intent);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonObject> call, Throwable t) {
+
+                    }
+                });
+            }
         }
 
         super.onCreate(savedInstanceState);
