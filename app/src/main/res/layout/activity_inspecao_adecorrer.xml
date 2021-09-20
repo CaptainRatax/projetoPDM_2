@@ -7,6 +7,18 @@
     tools:context=".InspecaoADecorrer">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_NovoCaso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="#36713C"
+        android:clickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_note_add_24" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,9 +26,34 @@
         android:layout_marginTop="10dp"
         android:backgroundTint="@android:color/holo_red_dark"
         android:clickable="true"
-        android:tint="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:rippleColor="#FFFFFF"
-        app:srcCompat="@drawable/close" />
+        app:srcCompat="@drawable/ic_baseline_cancel_24" />
+
+    <Button
+        android:id="@+id/btn_TerminarInspecao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="#36713C"
+        android:text="Terminar Inspeção"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_TerminarInspecao"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_cancel"
+        tools:listitem="@layout/list_item" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

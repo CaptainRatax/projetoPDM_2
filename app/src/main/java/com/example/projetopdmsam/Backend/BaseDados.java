@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Build;
 
 import com.example.projetopdmsam.Modelos.Caso;
 import com.example.projetopdmsam.Modelos.Inspecao;
@@ -249,7 +250,7 @@ public class BaseDados extends SQLiteOpenHelper {
             }
             Obra obra = new Obra(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2),
                     cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6),
-                    cursor.getString(7), cursor.getString(8), cursor.getString(9) == "1");
+                    cursor.getString(7), cursor.getString(8), Integer.parseInt(cursor.getString(9)) == 1);
 
             return obra;
         }catch (Exception e){
@@ -332,13 +333,23 @@ public class BaseDados extends SQLiteOpenHelper {
 
     //Eliminar Inspecao
     public void acabarInspecaoLocal(){
-        int Id = getInspecaoADecorrer().getId();
+        Inspecao inspecaoADecorrer = getInspecaoADecorrer();
+        int Id = inspecaoADecorrer.getId();
 
         SQLiteDatabase bd = this.getWritableDatabase();
 
         bd.delete(TABELA_INSPECOES, INSPECOES_ID + " = ?", new String[] {String.valueOf(Id)});
 
-        //bd.close();
+        bd.close();
+
+        Obra obra = getObraPorId(inspecaoADecorrer.getObraId());
+
+        if(obra.isActive()){
+            eliminarObra(inspecaoADecorrer.getObraId());
+        }
+
+        eliminarTodosOsCasos();
+
     }
 
     //Get da inspecao
@@ -421,6 +432,7 @@ public class BaseDados extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
 
+        values.put(CASOS_ID, caso.getId());
         values.put(CASOS_TITULO, caso.getTitulo());
         values.put(CASOS_DESCRICAO, caso.getDescricao());
         values.put(CASOS_IMAGEM, caso.getImagem());
@@ -435,6 +447,17 @@ public class BaseDados extends SQLiteOpenHelper {
         SQLiteDatabase bd = this.getWritableDatabase();
 
         bd.delete(TABELA_CASOS, CASOS_ID + " = ?", new String[] {String.valueOf(Id)});
+
+        //bd.close();
+    }
+
+    //ELIMINAR TODOS OS CASOS
+    public void eliminarTodosOsCasos(){
+        SQLiteDatabase bd = this.getWritableDatabase();
+
+        String query = "DELETE FROM " + TABELA_CASOS;
+
+        bd.execSQL(query);
 
         //bd.close();
     }

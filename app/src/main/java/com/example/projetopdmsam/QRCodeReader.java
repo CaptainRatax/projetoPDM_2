@@ -2,6 +2,7 @@ package com.example.projetopdmsam;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.Manifest;
 import android.content.Context;
@@ -46,6 +47,7 @@ public class QRCodeReader extends AppCompatActivity implements ZXingScannerView.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_qrcode_reader);
 
         loggedInUser = bd.getLoggedInUser();
@@ -105,6 +107,7 @@ public class QRCodeReader extends AppCompatActivity implements ZXingScannerView.
                                     obra.setId(obraJson.get("Id").getAsInt());
                                     obra.setNome(obraJson.get("Nome").getAsString());
                                     obra.setDescricao(obraJson.get("Descricao").getAsString());
+                                    obra.setMorada(obraJson.get("Morada").getAsString());
                                     obra.setCodigoPostal(obraJson.get("CodigoPostal").getAsString());
                                     obra.setLocalidade(obraJson.get("Localidade").getAsString());
                                     obra.setPais(obraJson.get("Pais").getAsString());

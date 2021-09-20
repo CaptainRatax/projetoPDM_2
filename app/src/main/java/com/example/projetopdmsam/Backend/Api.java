@@ -34,7 +34,7 @@ public interface Api {
     Call<JsonObject> iniciarInspecao(@Body JsonObject body);
 
     @POST("Inspecoes/Terminar")
-    Call<JsonObject> terminarInspecao(@Body JsonObject body);
+    Call<JsonObject> terminarInspecao(@Query("Id") int Id);
 
     @GET("Inspecoes/Devolver")
     Call<JsonObject> getInspecaoPorId(@Query("Id") int Id);
