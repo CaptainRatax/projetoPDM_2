@@ -12,13 +12,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:backgroundTint="#00BCD4"
+        android:backgroundTint="#36713C"
         android:clickable="true"
         android:contentDescription="@string/logout"
         android:focusable="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_logout"
+        app:srcCompat="@drawable/ic_baseline_exit_to_app_24"
         tools:ignore="ImageContrastCheck" />
 
     <TextView
@@ -52,7 +52,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
+        android:backgroundTint="#36713C"
         android:text="@string/come_ar_inspe_o_com_qr"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,12 +66,14 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="50dp"
+        android:backgroundTint="#36713C"
         android:text="@string/iniciar"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:id="@+id/editTextNumber3"
+        android:id="@+id/edt_IdObra"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"

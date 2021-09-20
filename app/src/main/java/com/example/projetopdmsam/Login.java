@@ -1,6 +1,7 @@
 package com.example.projetopdmsam;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Context;
 import android.content.Intent;
@@ -42,6 +43,7 @@ public class Login extends AppCompatActivity {
         }
 
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.login_main);
 
         Button btn_Login = findViewById(R.id.btn_Login);

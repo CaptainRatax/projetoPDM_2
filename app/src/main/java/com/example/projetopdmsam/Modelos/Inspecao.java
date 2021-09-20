@@ -20,7 +20,7 @@ public class Inspecao {
         DataFim = dataFim;
         IsFinished = isFinished;
         InspetorId = inspetorId;
-        ObraId = ObraId;
+        this.ObraId = ObraId;
         IsActive = isActive;
     }
 
@@ -29,7 +29,7 @@ public class Inspecao {
         DataFim = dataFim;
         IsFinished = isFinished;
         InspetorId = inspetorId;
-        ObraId = ObraId;
+        this.ObraId = ObraId;
         IsActive = isActive;
     }
 
@@ -78,7 +78,7 @@ public class Inspecao {
     }
 
     public void setObraId(int ObraId) {
-        ObraId = ObraId;
+        this.ObraId = ObraId;
     }
 
     public boolean isActive() {
