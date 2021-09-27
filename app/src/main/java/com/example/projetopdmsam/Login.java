@@ -94,6 +94,8 @@ public class Login extends AppCompatActivity {
 
     }
 
+    /*Funções auxiliares*/
+
     private static String sha512(String text) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-512");

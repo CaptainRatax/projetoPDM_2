@@ -82,6 +82,7 @@ public class PaginaInicial extends AppCompatActivity {
                             inspecaoADecorrer.setInspetorId(inspecao.get("InspectorId").getAsInt());
                             inspecaoADecorrer.setObraId(inspecao.get("ObraId").getAsInt());
                             inspecaoADecorrer.setActive(inspecao.get("IsActive").getAsBoolean());
+
                             if (bd.getInspecaoADecorrer().isActive()) { //Verifica se existe alguma inspeção a decorrer localmente
                                 //Existe uma inspeção a decorrer localmente
                                 if (bd.getInspecaoADecorrer() != inspecaoADecorrer) { //Verifica se a inspeção que está a decorrer localmente é diferente da recebida
