@@ -25,5 +25,4 @@ public class RetrofitClient {
         return this.myApi;
     }
 
-
 }
